@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-25T18:03:02.718954+00:00",
+  "generated_at": "2026-06-25T18:21:32.043631+00:00",
   "target_draw_id": "260625",
   "target_date": "2026-06-25",
   "predicted_combo": "1-2-4",
@@ -27,6 +27,6 @@
     "expected_wins": 0.006
   },
   "selected_model_name": "UniformBaseline",
-  "selection_reason": "insufficient data to validate any candidate -- defaulting to chance (results updated this run)",
+  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
