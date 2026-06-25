@@ -72,7 +72,11 @@ def build_context(
         "first_draw_date": str(history[0]["draw_date"]) if history else None,
         "last_draw_date": str(last_draw["draw_date"]) if last_draw else None,
         "last_result": (
-            {"draw_id": last_draw["draw_id"], "combo": f"{last_draw['d1']}-{last_draw['d2']}-{last_draw['d3']}", "pattern": last_draw["pattern"]}
+            {
+                "draw_id": last_draw["draw_id"],
+                "combo": f"{last_draw['d1']}-{last_draw['d2']}-{last_draw['d3']}",
+                "pattern": last_draw["pattern"],
+            }
             if last_draw else None
         ),
         "win_record": win_record(predictions),
@@ -89,6 +93,12 @@ def build_context(
         "honesty_banner": HONESTY_BANNER,
         "logloss_scope_note": LOGLOSS_SCOPE_NOTE,
     }
+
+
+def _format_last_result(last_result: dict | None) -> str:
+    if last_result is None:
+        return "no draws on file yet"
+    return f"{last_result['draw_id']}: {last_result['combo']} ({last_result['pattern']})"
 
 
 def _model_table_lines(model_table: dict) -> list[str]:
@@ -108,7 +118,7 @@ def render_console(ctx: dict) -> str:
         "",
         "-- History --",
         f"Draws on file: {ctx['history_count']} ({ctx['first_draw_date']} to {ctx['last_draw_date']})",
-        f"Last result: {ctx['last_result']}",
+        f"Last result: {_format_last_result(ctx['last_result'])}",
         "",
         "-- Reconciliation --",
         f"Record: {ctx['win_record']['wins']} wins / {ctx['win_record']['days_resolved']} days resolved",
@@ -143,7 +153,7 @@ def render_markdown(ctx: dict) -> str:
         "",
         "## History",
         f"- Draws on file: {ctx['history_count']} ({ctx['first_draw_date']} to {ctx['last_draw_date']})",
-        f"- Last result: {ctx['last_result']}",
+        f"- Last result: {_format_last_result(ctx['last_result'])}",
         "",
         "## Reconciliation",
         f"- Record: {ctx['win_record']['wins']} wins / {ctx['win_record']['days_resolved']} days resolved",
@@ -191,7 +201,7 @@ body {{ font-family: -apple-system, sans-serif; margin: 0; padding: 16px; backgr
 <div class="pick">{ctx['predicted_combo']}</div>
 <div class="meta">Stake: AED {config.STAKE_AED}</div>
 <div class="card">
-<strong>Last result:</strong> {ctx['last_result']}<br>
+<strong>Last result:</strong> {_format_last_result(ctx['last_result'])}<br>
 <strong>Record:</strong> {ctx['win_record']['wins']} wins / {ctx['win_record']['days_resolved']} days resolved<br>
 <strong>Net P&amp;L:</strong> AED {ctx['pnl']['net_pnl']} (RTP {ctx['pnl']['actual_rtp']:.2%} vs theoretical {ctx['pnl']['theoretical_rtp']:.2%})
 </div>

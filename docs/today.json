@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-06-25T18:03:02.718954+00:00",
+  "target_draw_id": "260625",
+  "target_date": "2026-06-25",
+  "predicted_combo": "1-2-4",
+  "predicted_digits_sorted": "1-2-4",
+  "play_type": "Any 6",
+  "stake": 5,
+  "last_result": {
+    "draw_id": "260625",
+    "combo": "1-9-2",
+    "pattern": "ABC"
+  },
+  "win_record": {
+    "wins": 0,
+    "days_resolved": 1
+  },
+  "pnl": {
+    "days_played": 1,
+    "total_staked": 5,
+    "total_won": 0,
+    "net_pnl": -5,
+    "actual_rtp": 0.0,
+    "theoretical_rtp": 0.51,
+    "resolved_days": 1,
+    "actual_wins": 0,
+    "expected_wins": 0.006
+  },
+  "selected_model_name": "UniformBaseline",
+  "selection_reason": "insufficient data to validate any candidate -- defaulting to chance (results updated this run)",
+  "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
+}
