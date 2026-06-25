@@ -1,5 +1,5 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-06-25T18:21:32.043631+00:00_
+_Generated: 2026-06-25T18:37:01.315660+00:00_
 
 ## History
 - Draws on file: 387 (2025-06-04 to 2026-06-25)
@@ -13,7 +13,7 @@ _Generated: 2026-06-25T18:21:32.043631+00:00_
 - PerPositionFrequency: log-loss=4.8035, top1_hit_rate=2.9304%, n_scored=273
 - MarkovOrder1: log-loss=4.8651, top1_hit_rate=0.3663%, n_scored=273
 - MarkovOrder2: log-loss=4.8095, top1_hit_rate=1.8315%, n_scored=273
-- MLClassifier: log-loss=6.5017, top1_hit_rate=0.7326%, n_scored=273
+- MLClassifier: log-loss=6.5022, top1_hit_rate=0.7326%, n_scored=273
 - **Selected:** UniformBaseline -- no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
