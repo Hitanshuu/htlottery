@@ -203,13 +203,15 @@ def render_html(ctx: dict) -> str:
     pnl = ctx["pnl"]
     win = ctx["win_record"]
     net_class = "pos" if pnl["net_pnl"] >= 0 else "neg"
-    model_rows = "".join(
-        f'<div class="model-row{" model-row--selected" if name == ctx["selected_model_name"] else ""}">'
-        f'<span class="model-name">{name}</span>'
-        f'<span class="model-metric">{f"{stats["mean_logloss"]:.4f}" if stats["n_scored"] else "n/a"}</span>'
-        f"</div>"
-        for name, stats in ctx["model_table"].items()
-    )
+    model_row_parts = []
+    for name, stats in ctx["model_table"].items():
+        row_class = "model-row model-row--selected" if name == ctx["selected_model_name"] else "model-row"
+        metric = f"{stats['mean_logloss']:.4f}" if stats["n_scored"] else "n/a"
+        model_row_parts.append(
+            f'<div class="{row_class}"><span class="model-name">{name}</span>'
+            f'<span class="model-metric">{metric}</span></div>'
+        )
+    model_rows = "".join(model_row_parts)
     fairness_rows = "".join(
         f'<div class="fair-row"><span>{pos}</span><span>p = {stats["p_value"]:.4f}</span></div>'
         for pos, stats in ctx["fairness_position"].items()
