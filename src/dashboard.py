@@ -182,30 +182,169 @@ def render_markdown(ctx: dict) -> str:
     return "\n".join(lines)
 
 
+_ICON_TARGET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>'
+_ICON_TROPHY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4.5A1.5 1.5 0 0 0 3 7.5 3.5 3.5 0 0 0 7 11"/><path d="M17 6h2.5A1.5 1.5 0 0 1 21 7.5 3.5 3.5 0 0 1 17 11"/><path d="M9 17h6M12 13v6"/></svg>'
+_ICON_WALLET = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.2" fill="currentColor" stroke="none"/></svg>'
+_ICON_SHIELD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg>'
+_ICON_BRAIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0-2 5 3 3 0 0 0 2 5v1a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z"/><path d="M15 3a3 3 0 0 1 3 3v1a3 3 0 0 1 2 5 3 3 0 0 1-2 5v1a3 3 0 0 1-6 0"/></svg>'
+_ICON_INFO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>'
+
+
+def _stat_card(icon: str, label: str, value: str, sub: str = "") -> str:
+    sub_html = f'<div class="stat-sub">{sub}</div>' if sub else ""
+    return f"""<div class="card stat-card">
+<div class="stat-icon">{icon}</div>
+<div class="stat-label">{label}</div>
+<div class="stat-value">{value}</div>
+{sub_html}</div>"""
+
+
 def render_html(ctx: dict) -> str:
+    pnl = ctx["pnl"]
+    win = ctx["win_record"]
+    net_class = "pos" if pnl["net_pnl"] >= 0 else "neg"
+    model_rows = "".join(
+        f'<div class="model-row{" model-row--selected" if name == ctx["selected_model_name"] else ""}">'
+        f'<span class="model-name">{name}</span>'
+        f'<span class="model-metric">{f"{stats["mean_logloss"]:.4f}" if stats["n_scored"] else "n/a"}</span>'
+        f"</div>"
+        for name, stats in ctx["model_table"].items()
+    )
+    fairness_rows = "".join(
+        f'<div class="fair-row"><span>{pos}</span><span>p = {stats["p_value"]:.4f}</span></div>'
+        for pos, stats in ctx["fairness_position"].items()
+    )
+
+    last_result = ctx["last_result"]
+    if last_result:
+        last_result_value = last_result["draw_id"]
+        last_result_sub = f"{last_result['combo']} ({last_result['pattern']})"
+    else:
+        last_result_value = "n/a"
+        last_result_sub = "no draws on file yet"
+
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UAE Pick 3 Any-6 Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UAE Pick 3 · Any 6 Tracker</title>
 <style>
-body {{ font-family: -apple-system, sans-serif; margin: 0; padding: 16px; background: #111; color: #eee; }}
-.pick {{ font-size: 48px; font-weight: 700; text-align: center; letter-spacing: 4px; margin: 8px 0; }}
-.meta {{ text-align: center; color: #aaa; margin-bottom: 4px; }}
-.updated {{ text-align: center; color: #f5a623; font-weight: 600; margin-bottom: 16px; }}
-.card {{ background: #1c1c1c; border-radius: 12px; padding: 12px 16px; margin: 12px 0; }}
-.banner {{ background: #2a1a1a; border: 1px solid #663; padding: 12px; border-radius: 8px; font-size: 14px; }}
+:root {{
+  --bg-deep: #0a0a14; --bg-mid: #1a0b2e; --bg-glow: #2d1b4e;
+  --violet: #7c3aed; --pink: #f472b6; --orange: #fb923c; --cyan: #22d3ee;
+  --surface: rgba(255,255,255,0.045); --border: rgba(255,255,255,0.09);
+  --fg: #f4f3f8; --fg-muted: #a9a5bd;
+  --pos: #34d399; --neg: #fb7185;
+  --radius: 20px;
+}}
+* {{ box-sizing: border-box; }}
+html {{ -webkit-text-size-adjust: 100%; }}
+body {{
+  margin: 0; min-height: 100dvh; color: var(--fg);
+  font: 16px/1.5 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(circle at 15% -10%, rgba(124,58,237,0.35), transparent 45%),
+              radial-gradient(circle at 110% 15%, rgba(244,114,182,0.25), transparent 40%),
+              radial-gradient(circle at 50% 110%, rgba(34,211,238,0.12), transparent 45%),
+              linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 55%, var(--bg-glow) 100%);
+  overflow-x: hidden;
+}}
+.wrap {{ max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; position: relative; }}
+.deco {{ position: absolute; pointer-events: none; opacity: 0.5; z-index: 0; }}
+.deco--tri {{ top: 18px; right: 8px; width: 64px; height: 64px; }}
+.deco--ring {{ bottom: 120px; left: -30px; width: 140px; height: 140px; border: 1.5px solid rgba(124,58,237,0.35); border-radius: 28px; transform: rotate(18deg); }}
+.content {{ position: relative; z-index: 1; }}
+.topbar {{ display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }}
+.brand {{ font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--fg-muted); text-transform: uppercase; }}
+.pill {{ display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); font-size: 12px; color: var(--fg-muted); white-space: nowrap; }}
+.pill-dot {{ width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }}
+.hero {{ text-align: center; padding: 28px 16px 24px; }}
+.hero-eyebrow {{ font-size: 13px; color: var(--fg-muted); margin-bottom: 10px; }}
+.hero-pick {{
+  font-size: 56px; font-weight: 800; letter-spacing: 0.08em; margin: 4px 0 12px; line-height: 1;
+  background: linear-gradient(90deg, var(--cyan), var(--violet) 45%, var(--pink) 75%, var(--orange));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}}
+.hero-meta {{ display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 6px; }}
+.card {{
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px; margin: 14px 0; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}}
+.stats-grid {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }}
+.stat-card {{ padding: 14px 10px; text-align: center; margin: 0; }}
+.stat-icon {{ width: 34px; height: 34px; margin: 0 auto 8px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(244,114,182,0.25)); color: #fff; }}
+.stat-icon svg {{ width: 18px; height: 18px; }}
+.stat-label {{ font-size: 11px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }}
+.stat-value {{ font-size: 17px; font-weight: 700; overflow-wrap: anywhere; }}
+.stat-sub {{ font-size: 11px; color: var(--fg-muted); margin-top: 2px; overflow-wrap: anywhere; }}
+.section-title {{ display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 12px; }}
+.section-title svg {{ width: 16px; height: 16px; color: var(--pink); }}
+.model-row {{ display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; font-size: 13px; }}
+.model-row span {{ min-width: 0; overflow-wrap: anywhere; }}
+.model-row--selected {{ background: rgba(124,58,237,0.18); border: 1px solid rgba(124,58,237,0.4); font-weight: 700; }}
+.model-name {{ color: var(--fg); }}
+.model-metric {{ color: var(--fg-muted); font-variant-numeric: tabular-nums; }}
+.selection-note {{ font-size: 12.5px; color: var(--fg-muted); margin-top: 10px; line-height: 1.5; }}
+.fair-row {{ display: flex; justify-content: space-between; gap: 8px; padding: 6px 10px; font-size: 13px; color: var(--fg-muted); }}
+.fair-row span {{ min-width: 0; overflow-wrap: anywhere; }}
+.fair-row span:first-child {{ color: var(--fg); }}
+.net-pnl {{ font-size: 22px; font-weight: 800; }}
+.net-pnl.pos {{ color: var(--pos); }}
+.net-pnl.neg {{ color: var(--neg); }}
+.banner {{
+  display: flex; gap: 10px; align-items: flex-start; background: rgba(251,146,60,0.1);
+  border: 1px solid rgba(251,146,60,0.3); border-radius: var(--radius); padding: 16px; font-size: 12.5px;
+  color: #fde0c4; line-height: 1.55; margin-top: 18px;
+}}
+.banner svg {{ width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; color: var(--orange); }}
+.footer {{ text-align: center; font-size: 11px; color: var(--fg-muted); margin-top: 20px; }}
+@media (max-width: 360px) {{ .hero-pick {{ font-size: 44px; }} .stats-grid {{ grid-template-columns: 1fr 1fr; }} }}
+@media (prefers-reduced-motion: no-preference) {{ .card, .stat-card {{ transition: transform 200ms ease, box-shadow 200ms ease; }} }}
 </style></head>
 <body>
-<div class="updated">Last updated: {ctx['generated_at']}</div>
-<div class="meta">Play type: Any 6 | Target draw {ctx['target_draw_id']} | {ctx['target_date']}</div>
-<div class="pick">{ctx['predicted_combo']}</div>
-<div class="meta">Stake: AED {config.STAKE_AED}</div>
-<div class="card">
-<strong>Last result:</strong> {_format_last_result(ctx['last_result'])}<br>
-<strong>Record:</strong> {ctx['win_record']['wins']} wins / {ctx['win_record']['days_resolved']} days resolved<br>
-<strong>Net P&amp;L:</strong> AED {ctx['pnl']['net_pnl']} (RTP {ctx['pnl']['actual_rtp']:.2%} vs theoretical {ctx['pnl']['theoretical_rtp']:.2%})
+<div class="wrap">
+  <svg class="deco deco--tri" viewBox="0 0 64 64" fill="none" stroke="rgba(167,139,250,0.55)" stroke-width="1.5"><path d="M32 6 58 54H6Z"/></svg>
+  <div class="deco deco--ring"></div>
+  <div class="content">
+    <div class="topbar">
+      <span class="brand">Pick 3 · Any 6</span>
+      <span class="pill"><span class="pill-dot"></span>Updated {ctx['generated_at'][11:16]} UTC</span>
+    </div>
+
+    <div class="hero">
+      <div class="hero-eyebrow">Target draw {ctx['target_draw_id']} · {ctx['target_date']}</div>
+      <div class="hero-pick">{ctx['predicted_combo']}</div>
+      <div class="hero-meta">
+        <span class="pill">Play type: Any 6</span>
+        <span class="pill">Stake: AED {config.STAKE_AED}</span>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      {_stat_card(_ICON_TARGET, "Last Result", last_result_value, last_result_sub)}
+      {_stat_card(_ICON_TROPHY, "Record", f"{win['wins']} / {win['days_resolved']}", "wins / resolved")}
+      {_stat_card(_ICON_WALLET, "Net P&amp;L", f"AED {pnl['net_pnl']}", f"RTP {pnl['actual_rtp']:.1%}")}
+    </div>
+
+    <div class="card">
+      <div class="section-title">{_ICON_BRAIN} Model Selection</div>
+      {model_rows}
+      <div class="selection-note"><strong>Selected: {ctx['selected_model_name']}</strong> — {ctx['selection_reason']}</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">{_ICON_SHIELD} Fairness Audit (not a predictor)</div>
+      {fairness_rows}
+      <div class="fair-row"><span>pattern split</span><span>p = {ctx['fairness_pattern']['p_value']:.4f}</span></div>
+    </div>
+
+    <div class="banner">
+      {_ICON_INFO}
+      <div>{ctx['honesty_banner']}</div>
+    </div>
+
+    <div class="footer">Generated {ctx['generated_at']}</div>
+  </div>
 </div>
-<div class="banner">{ctx['honesty_banner']}</div>
 </body></html>
 """
 
