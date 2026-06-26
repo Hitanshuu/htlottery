@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-25T19:16:24.794520+00:00",
-  "target_draw_id": "260625",
-  "target_date": "2026-06-25",
-  "predicted_combo": "1-2-4",
-  "predicted_digits_sorted": "1-2-4",
+  "generated_at": "2026-06-26T16:59:26.456552+00:00",
+  "target_draw_id": "260626",
+  "target_date": "2026-06-26",
+  "predicted_combo": "3-5-9",
+  "predicted_digits_sorted": "3-5-9",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
@@ -16,10 +16,10 @@
     "days_resolved": 1
   },
   "pnl": {
-    "days_played": 1,
-    "total_staked": 5,
+    "days_played": 2,
+    "total_staked": 10,
     "total_won": 0,
-    "net_pnl": -5,
+    "net_pnl": -10,
     "actual_rtp": 0.0,
     "theoretical_rtp": 0.51,
     "resolved_days": 1,

@@ -1,5 +1,5 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-06-25T19:16:24.794520+00:00_
+_Generated: 2026-06-26T16:59:26.456552+00:00_
 
 ## History
 - Draws on file: 387 (2025-06-04 to 2026-06-25)
@@ -18,12 +18,12 @@ _Generated: 2026-06-25T19:16:24.794520+00:00_
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **260625** (2026-06-25) | Stake: AED 5
-- Pick: **1-2-4**
+- Play type: **Any 6** | Target draw: **260626** (2026-06-26) | Stake: AED 5
+- Pick: **3-5-9**
 
 ## P&L Ledger
-- Days played: 1 | Staked: AED 5 | Won: AED 0
-- Net P&L: AED -5 | Actual RTP: 0.00% vs theoretical 51.00%
+- Days played: 2 | Staked: AED 10 | Won: AED 0
+- Net P&L: AED -10 | Actual RTP: 0.00% vs theoretical 51.00%
 - Expected wins: 0.006 | Actual wins: 0
 
 ## Fairness Audit (not a predictor)

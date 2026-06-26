@@ -1,2 +1,3 @@
 target_draw_id,target_date,predicted_combo,predicted_digits_sorted,play_type,model_used,model_logloss,baseline_logloss,stake,generated_at,actual_combo,won,payout,cum_stake,cum_payout,cum_pnl
 260625,2026-06-25,1-2-4,1-2-4,Any 6,UniformBaseline,4.787492,4.787492,5,2026-06-25T19:16:24.791379+00:00,1-9-2,False,0,5,0,-5
+260626,2026-06-26,3-5-9,3-5-9,Any 6,UniformBaseline,4.787492,4.787492,5,2026-06-26T16:59:26.453140+00:00,,,,10,0,-10
