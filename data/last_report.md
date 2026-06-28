@@ -1,12 +1,12 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-06-27T16:02:53.395642+00:00_
+_Generated: 2026-06-28T16:08:39.873408+00:00_
 
 ## History
-- Draws on file: 388 (2025-06-04 to 2026-06-26)
-- Last result: 260626: 8-1-3 (ABC)
+- Draws on file: 389 (2025-06-04 to 2026-06-27)
+- Last result: 260627: 8-2-8 (AAB)
 
 ## Reconciliation
-- Record: 0 wins / 2 days resolved
+- Record: 0 wins / 3 days resolved
 
 ## Model Selection
 - UniformBaseline: log-loss=4.7875, top1_hit_rate=0.7299%, n_scored=274
@@ -18,18 +18,18 @@ _Generated: 2026-06-27T16:02:53.395642+00:00_
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **260627** (2026-06-27) | Stake: AED 5
-- Pick: **6-8-1**
+- Play type: **Any 6** | Target draw: **260628** (2026-06-28) | Stake: AED 5
+- Pick: **0-1-9**
 
 ## P&L Ledger
-- Days played: 3 | Staked: AED 15 | Won: AED 0
-- Net P&L: AED -15 | Actual RTP: 0.00% vs theoretical 51.00%
-- Expected wins: 0.012 | Actual wins: 0
+- Days played: 4 | Staked: AED 20 | Won: AED 0
+- Net P&L: AED -20 | Actual RTP: 0.00% vs theoretical 51.00%
+- Expected wins: 0.018 | Actual wins: 0
 
 ## Fairness Audit (not a predictor)
-- d1: p=0.4459
-- d2: p=0.5836
-- d3: p=0.7833
-- pattern split: p=0.1006
+- d1: p=0.4121
+- d2: p=0.5194
+- d3: p=0.7666
+- pattern split: p=0.1056
 
 > Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return ≈ 51% (≈49% expected loss). For entertainment; play at most AED 5/day.
