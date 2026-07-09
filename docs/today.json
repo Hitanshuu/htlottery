@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-07-08T16:29:01.171111+00:00",
-  "target_draw_id": "260708",
-  "target_date": "2026-07-08",
-  "predicted_combo": "6-5-9",
-  "predicted_digits_sorted": "5-6-9",
+  "generated_at": "2026-07-09T16:34:31.695158+00:00",
+  "target_draw_id": "260709",
+  "target_date": "2026-07-09",
+  "predicted_combo": "5-4-9",
+  "predicted_digits_sorted": "4-5-9",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
-    "draw_id": "260707",
-    "combo": "7-2-5",
+    "draw_id": "260708",
+    "combo": "1-0-5",
     "pattern": "ABC"
   },
   "win_record": {
     "wins": 1,
-    "days_resolved": 13
+    "days_resolved": 14
   },
   "pnl": {
-    "days_played": 14,
-    "total_staked": 70,
+    "days_played": 15,
+    "total_staked": 75,
     "total_won": 425,
-    "net_pnl": 355,
-    "actual_rtp": 6.071428571428571,
+    "net_pnl": 350,
+    "actual_rtp": 5.666666666666667,
     "theoretical_rtp": 0.51,
-    "resolved_days": 13,
+    "resolved_days": 14,
     "actual_wins": 1,
-    "expected_wins": 0.078
+    "expected_wins": 0.084
   },
   "selected_model_name": "UniformBaseline",
   "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)",
