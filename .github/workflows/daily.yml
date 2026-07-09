@@ -1,10 +1,20 @@
-name: Daily Pick 3 run
+name: Pick 3 predict + reconcile
 
 on:
   schedule:
-    # 15:00 UTC = 19:00 Asia/Dubai, ~2.5h cushion before the 21:30 draw
-    - cron: "0 15 * * *"
-  workflow_dispatch: {}
+    # 15:30 UTC = 19:30 Asia/Dubai -- predict: generate/upsert tonight's pick,
+    # ~2h before the 21:30 draw, so it's ready when you buy your ticket.
+    - cron: "30 15 * * *"
+    # 18:30 UTC = 22:30 Asia/Dubai -- reconcile: pull the landed 21:30 result
+    # and settle today's prediction / P&L. Never touches the pick.
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Which run to trigger manually"
+        type: choice
+        options: [predict, reconcile]
+        default: predict
 
 permissions:
   contents: write
@@ -27,8 +37,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run daily pipeline
-        run: python run_daily.py
+      - name: Determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "30 15 * * *" ]; then
+            echo "mode=predict" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=reconcile" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run pipeline
+        run: python run_daily.py --mode "${{ steps.mode.outputs.mode }}"
 
       - name: Commit and push updated data/docs
         run: |
@@ -39,6 +60,6 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Daily run: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "${{ steps.mode.outputs.mode }} run: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "${GITHUB_REF_NAME}"

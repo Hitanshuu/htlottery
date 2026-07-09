@@ -12,12 +12,23 @@ i.i.d. uniform over 000-999, and no model here claims otherwise. It exists to:
 
 ## How it runs
 
-Everything is orchestrated by `run_daily.py`, scheduled once a day by GitHub
-Actions (`.github/workflows/daily.yml`) at **15:00 UTC = 19:00 Asia/Dubai**,
-about 2.5 hours before the 21:30 draw. The same script works identically
-locally and in CI -- there's no GitHub-only code path.
+Everything is orchestrated by `run_daily.py`, run **twice a day** by GitHub
+Actions (`.github/workflows/daily.yml`) so the pick is always ready before you
+buy a ticket and the P&L is never a day stale:
 
-Each run, in order:
+- **19:30 Asia/Dubai (15:30 UTC) -- `--mode predict`**: scrapes/reconciles
+  whatever's on file, then generates and upserts **tonight's pick** for
+  today's draw. Open the phone page around 20:00-20:30 Dubai time and buy
+  your AED 5 ticket for the number shown.
+- **22:30 Asia/Dubai (18:30 UTC) -- `--mode reconcile`**: after the 21:30
+  draw has landed, scrapes the real result, settles today's prediction
+  (win/loss + payout), and refreshes cumulative P&L. It never regenerates or
+  overwrites the pick you already played.
+
+The same script works identically locally and in CI -- there's no
+GitHub-only code path.
+
+Each **predict** run, in order:
 
 1. Imports `data/history_raw.csv`/`.txt` if present (see format below).
 2. Scrapes the latest results (see **Data sources** below), validates them,
@@ -30,6 +41,14 @@ Each run, in order:
    and upserts the pending row in `data/predictions.csv`.
 6. Prints the dashboard to the console and writes `data/last_report.md` and
    the phone page (`docs/index.html` + `docs/today.json`).
+
+Each **reconcile** run does steps 1-3 and 6 only -- it skips model
+selection and pick generation entirely, so today's already-placed pick is
+left untouched even though the draw result (and thus the win/loss outcome)
+has just landed.
+
+You can also trigger either mode manually from the Actions tab
+(`workflow_dispatch` → choose `predict` or `reconcile`).
 
 The repo **is** the database: the workflow commits `data/*.csv` and `docs/*`
 back to the repo after every run. Git history is the audit trail.
@@ -90,17 +109,19 @@ draw_id).
    ```
 2. **Run it locally** (creates `data/` and `docs/` on first run if missing):
    ```bash
-   python run_daily.py
+   python run_daily.py --mode predict
+   python run_daily.py --mode reconcile
    ```
 3. **Enable GitHub Pages** so the phone page goes live:
    Settings → Pages → Source: **Deploy from a branch** → Branch: **main**,
    folder: **/docs**. Your phone page will be at
    `https://<your-username>.github.io/<repo-name>/`.
 4. **Trigger the first scheduled run manually** (don't wait for the cron):
-   Actions tab → "Daily Pick 3 run" → Run workflow → Run workflow. You can
-   also do this from the GitHub mobile app (Actions tab → workflow → ▶).
-5. After that, it runs itself daily at 15:00 UTC. Bookmark the Pages URL on
-   your phone.
+   Actions tab → "Pick 3 predict + reconcile" → Run workflow → pick `predict`
+   → Run workflow. You can also do this from the GitHub mobile app (Actions
+   tab → workflow → ▶).
+5. After that, it runs itself daily at 19:30 and 22:30 Asia/Dubai (predict,
+   then reconcile). Bookmark the Pages URL on your phone.
 
 ## Running tests
 
