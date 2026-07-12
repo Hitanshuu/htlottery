@@ -1,5 +1,5 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-07-11T19:42:55.268948+00:00_
+_Generated: 2026-07-12T16:28:31.751328+00:00_
 
 ## History
 - Draws on file: 403 (2025-06-04 to 2026-07-11)
@@ -13,17 +13,17 @@ _Generated: 2026-07-11T19:42:55.268948+00:00_
 - PerPositionFrequency: log-loss=4.8033, top1_hit_rate=2.8169%, n_scored=284
 - MarkovOrder1: log-loss=4.8670, top1_hit_rate=0.3521%, n_scored=284
 - MarkovOrder2: log-loss=4.8030, top1_hit_rate=1.7606%, n_scored=284
-- MLClassifier: log-loss=6.4440, top1_hit_rate=0.7042%, n_scored=284
-- **Selected:** UniformBaseline -- no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (reconcile run -- results updated this run, no new pick generated)
+- MLClassifier: log-loss=6.4451, top1_hit_rate=0.7042%, n_scored=284
+- **Selected:** UniformBaseline -- no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **260711** (2026-07-11) | Stake: AED 5
-- Pick: **5-3-0**
+- Play type: **Any 6** | Target draw: **260712** (2026-07-12) | Stake: AED 5
+- Pick: **4-6-3**
 
 ## P&L Ledger
-- Days played: 17 | Staked: AED 85 | Won: AED 425
-- Net P&L: AED 340 | Actual RTP: 500.00% vs theoretical 51.00%
+- Days played: 18 | Staked: AED 90 | Won: AED 425
+- Net P&L: AED 335 | Actual RTP: 472.22% vs theoretical 51.00%
 - Expected wins: 0.102 | Actual wins: 1
 
 ## Fairness Audit (not a predictor)
