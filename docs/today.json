@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-17T19:40:43.255181+00:00",
-  "target_draw_id": "260717",
-  "target_date": "2026-07-17",
-  "predicted_combo": "2-5-1",
-  "predicted_digits_sorted": "1-2-5",
+  "generated_at": "2026-07-18T16:26:29.811609+00:00",
+  "target_draw_id": "260718",
+  "target_date": "2026-07-18",
+  "predicted_combo": "2-9-6",
+  "predicted_digits_sorted": "2-6-9",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
@@ -16,17 +16,17 @@
     "days_resolved": 23
   },
   "pnl": {
-    "days_played": 23,
-    "total_staked": 115,
+    "days_played": 24,
+    "total_staked": 120,
     "total_won": 425,
-    "net_pnl": 310,
-    "actual_rtp": 3.6956521739130435,
+    "net_pnl": 305,
+    "actual_rtp": 3.5416666666666665,
     "theoretical_rtp": 0.51,
     "resolved_days": 23,
     "actual_wins": 1,
     "expected_wins": 0.138
   },
   "selected_model_name": "UniformBaseline",
-  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (reconcile run -- results updated this run, no new pick generated)",
+  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
