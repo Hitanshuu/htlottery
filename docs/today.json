@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-07-27T17:18:26.032431+00:00",
-  "target_draw_id": "260727",
-  "target_date": "2026-07-27",
-  "predicted_combo": "2-3-4",
-  "predicted_digits_sorted": "2-3-4",
+  "generated_at": "2026-07-27T20:07:28.627506+00:00",
+  "target_draw_id": "260728",
+  "target_date": "2026-07-28",
+  "predicted_combo": "n/a -- run predict mode first",
+  "predicted_digits_sorted": "n/a",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
-    "draw_id": "260726",
-    "combo": "2-9-3",
+    "draw_id": "260727",
+    "combo": "0-8-6",
     "pattern": "ABC"
   },
   "win_record": {
     "wins": 1,
-    "days_resolved": 32
+    "days_resolved": 33
   },
   "pnl": {
     "days_played": 33,
@@ -22,11 +22,11 @@
     "net_pnl": 260,
     "actual_rtp": 2.5757575757575757,
     "theoretical_rtp": 0.51,
-    "resolved_days": 32,
+    "resolved_days": 33,
     "actual_wins": 1,
-    "expected_wins": 0.192
+    "expected_wins": 0.198
   },
   "selected_model_name": "UniformBaseline",
-  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)",
+  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (reconcile run -- results updated this run, no new pick generated)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
