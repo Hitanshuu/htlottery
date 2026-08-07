@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-08-05T20:10:23.126888+00:00",
-  "target_draw_id": "260806",
-  "target_date": "2026-08-06",
+  "generated_at": "2026-08-07T00:25:55.086164+00:00",
+  "target_draw_id": "260807",
+  "target_date": "2026-08-07",
   "predicted_combo": "n/a -- run predict mode first",
   "predicted_digits_sorted": "n/a",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
-    "draw_id": "260805",
-    "combo": "8-3-0",
-    "pattern": "ABC"
+    "draw_id": "260806",
+    "combo": "7-0-7",
+    "pattern": "AAB"
   },
   "win_record": {
     "wins": 1,

@@ -1,9 +1,9 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-08-05T20:10:23.126888+00:00_
+_Generated: 2026-08-07T00:25:55.086164+00:00_
 
 ## History
-- Draws on file: 428 (2025-06-04 to 2026-08-05)
-- Last result: 260805: 8-3-0 (ABC)
+- Draws on file: 429 (2025-06-04 to 2026-08-06)
+- Last result: 260806: 7-0-7 (AAB)
 
 ## Reconciliation
 - Record: 1 wins / 42 days resolved
@@ -18,7 +18,7 @@ _Generated: 2026-08-05T20:10:23.126888+00:00_
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **260806** (2026-08-06) | Stake: AED 5
+- Play type: **Any 6** | Target draw: **260807** (2026-08-07) | Stake: AED 5
 - Pick: **n/a -- run predict mode first**
 
 ## P&L Ledger
@@ -27,9 +27,9 @@ _Generated: 2026-08-05T20:10:23.126888+00:00_
 - Expected wins: 0.252 | Actual wins: 1
 
 ## Fairness Audit (not a predictor)
-- d1: p=0.6274
-- d2: p=0.3550
-- d3: p=0.5741
-- pattern split: p=0.0647
+- d1: p=0.6066
+- d2: p=0.3621
+- d3: p=0.6163
+- pattern split: p=0.0681
 
 > Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return ≈ 51% (≈49% expected loss). For entertainment; play at most AED 5/day.
