@@ -1,20 +1,20 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 2026-08-13T16:25:01.033508+00:00_
+_Generated: 2026-08-13T19:36:15.649242+00:00_
 
 ## History
-- Draws on file: 435 (2025-06-04 to 2026-08-12)
-- Last result: 260812: 8-1-3 (ABC)
+- Draws on file: 436 (2025-06-04 to 2026-08-13)
+- Last result: 260813: 3-4-2 (ABC)
 
 ## Reconciliation
-- Record: 1 wins / 48 days resolved
+- Record: 1 wins / 49 days resolved
 
 ## Model Selection
-- UniformBaseline: log-loss=4.7875, top1_hit_rate=1.6234%, n_scored=308
-- PerPositionFrequency: log-loss=4.8043, top1_hit_rate=2.5974%, n_scored=308
-- MarkovOrder1: log-loss=4.8608, top1_hit_rate=0.3247%, n_scored=308
-- MarkovOrder2: log-loss=4.8159, top1_hit_rate=1.6234%, n_scored=308
-- MLClassifier: log-loss=6.3398, top1_hit_rate=0.6494%, n_scored=308
-- **Selected:** UniformBaseline -- no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)
+- UniformBaseline: log-loss=4.7875, top1_hit_rate=1.6181%, n_scored=309
+- PerPositionFrequency: log-loss=4.8039, top1_hit_rate=2.5890%, n_scored=309
+- MarkovOrder1: log-loss=4.8609, top1_hit_rate=0.3236%, n_scored=309
+- MarkovOrder2: log-loss=4.8180, top1_hit_rate=1.6181%, n_scored=309
+- MLClassifier: log-loss=6.3330, top1_hit_rate=0.6472%, n_scored=309
+- **Selected:** UniformBaseline -- no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (reconcile run -- results updated this run, no new pick generated)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
@@ -24,12 +24,12 @@ _Generated: 2026-08-13T16:25:01.033508+00:00_
 ## P&L Ledger
 - Days played: 49 | Staked: AED 245 | Won: AED 425
 - Net P&L: AED 180 | Actual RTP: 173.47% vs theoretical 51.00%
-- Expected wins: 0.288 | Actual wins: 1
+- Expected wins: 0.294 | Actual wins: 1
 
 ## Fairness Audit (not a predictor)
-- d1: p=0.4061
-- d2: p=0.4566
-- d3: p=0.6896
-- pattern split: p=0.0733
+- d1: p=0.4331
+- d2: p=0.4501
+- d3: p=0.6772
+- pattern split: p=0.0735
 
 > Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return ≈ 51% (≈49% expected loss). For entertainment; play at most AED 5/day.
