@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T15:59:41.852789+00:00",
+  "generated_at": "2026-08-20T19:11:21.475560+00:00",
   "target_draw_id": "260820",
   "target_date": "2026-08-20",
   "predicted_combo": "0-7-4",
@@ -7,13 +7,13 @@
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
-    "draw_id": "260819",
-    "combo": "9-1-2",
+    "draw_id": "260820",
+    "combo": "1-2-3",
     "pattern": "ABC"
   },
   "win_record": {
     "wins": 1,
-    "days_resolved": 55
+    "days_resolved": 56
   },
   "pnl": {
     "days_played": 56,
@@ -22,11 +22,11 @@
     "net_pnl": 145,
     "actual_rtp": 1.5178571428571428,
     "theoretical_rtp": 0.51,
-    "resolved_days": 55,
+    "resolved_days": 56,
     "actual_wins": 1,
-    "expected_wins": 0.33
+    "expected_wins": 0.336
   },
   "selected_model_name": "UniformBaseline",
-  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (results updated this run)",
+  "selection_reason": "no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline (reconcile run -- results updated this run, no new pick generated)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
