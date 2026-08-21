@@ -16,6 +16,13 @@ AGGREGATOR_SOURCE_URLS = [
 
 ML_LAG_DRAWS = 5
 
+# Hardcoded override of backtest.select_model's honest walk-forward choice.
+# The honest selector almost always (correctly) picks UniformBaseline -- see
+# README. This forces PerPositionFrequency instead, at the user's explicit
+# request; run_daily.py labels the resulting pick as an override, not an
+# earned selection, so the dashboard stays honest about what happened.
+FORCED_MODEL_OVERRIDE = "PerPositionFrequency"
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 DOCS_DIR = PROJECT_ROOT / "docs"
@@ -24,6 +31,7 @@ DRAWS_CSV = DATA_DIR / "draws.csv"
 PREDICTIONS_CSV = DATA_DIR / "predictions.csv"
 HISTORY_RAW_PATH_CANDIDATES = [DATA_DIR / "history_raw.csv", DATA_DIR / "history_raw.txt"]
 LAST_REPORT_MD = DATA_DIR / "last_report.md"
+RUN_STATE_JSON = DATA_DIR / "run_state.json"
 
 DOCS_INDEX_HTML = DOCS_DIR / "index.html"
 DOCS_TODAY_JSON = DOCS_DIR / "today.json"

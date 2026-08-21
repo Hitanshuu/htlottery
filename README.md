@@ -1,8 +1,8 @@
 # UAE Pick 3 Any-6 Tracker
 
-A small, honest tool for tracking a fixed AED 5/day "Any 6" play on the UAE
-Lottery Pick 3 draw. It does **not** predict anything -- Pick 3 draws are
-i.i.d. uniform over 000-999, and no model here claims otherwise. It exists to:
+A small tool for tracking a fixed AED 5/day "Any 6" play on the UAE Lottery
+Pick 3 draw. Pick 3 draws are i.i.d. uniform over 000-999, so nothing here
+can actually predict a draw. It exists to:
 
 - track real results and a real running P&L (expected RTP ≈ 51%, i.e. ≈49%
   expected loss over time),
@@ -10,20 +10,36 @@ i.i.d. uniform over 000-999, and no model here claims otherwise. It exists to:
   (correctly) concludes nothing beats chance, and
 - give you a one-glance phone page each evening before the 21:30 draw.
 
+**Current caveat:** the pick generator is currently hardcoded to
+`PerPositionFrequency` (`src/config.py: FORCED_MODEL_OVERRIDE`), overriding
+the honest walk-forward selection at the user's request. The dashboard's
+"Selected: ..." line always shows both what was forced and what the honest
+selection would have picked, so this is never silently hidden. See
+`src/backtest.py` for the (unmodified) honest selection logic this
+overrides.
+
 ## How it runs
 
 Everything is orchestrated by `run_daily.py`, run **twice a day** by GitHub
 Actions (`.github/workflows/daily.yml`) so the pick is always ready before you
 buy a ticket and the P&L is never a day stale:
 
-- **19:30 Asia/Dubai (15:30 UTC) -- `--mode predict`**: scrapes/reconciles
+- **18:45 Asia/Dubai (14:45 UTC) -- `--mode predict`**: scrapes/reconciles
   whatever's on file, then generates and upserts **tonight's pick** for
-  today's draw. Open the phone page around 20:00-20:30 Dubai time and buy
-  your AED 5 ticket for the number shown.
-- **22:30 Asia/Dubai (18:30 UTC) -- `--mode reconcile`**: after the 21:30
+  today's draw. GitHub Actions' scheduled cron is best-effort and has been
+  observed drifting 15-45+ min late, so this fires 45 min ahead of the true
+  19:30 target to guarantee the pick is posted well before the 20:30
+  ticket-buying window. Open the phone page around 20:00-20:30 Dubai time
+  and buy your AED 5 ticket for the number shown.
+- **22:00 Asia/Dubai (18:00 UTC) -- `--mode reconcile`**: after the 21:30
   draw has landed, scrapes the real result, settles today's prediction
   (win/loss + payout), and refreshes cumulative P&L. It never regenerates or
-  overwrites the pick you already played.
+  overwrites the pick you already played. Also fired early for the same
+  drift-buffer reason.
+
+The phone page always shows **"Last predict run"** / **"Last reconcile
+run"** in Dubai time so you can check freshness before buying, regardless of
+any given day's scheduling drift.
 
 The same script works identically locally and in CI -- there's no
 GitHub-only code path.
@@ -35,8 +51,10 @@ Each **predict** run, in order:
    and appends anything new to `data/draws.csv` (deduplicated by draw_id).
 3. Reconciles any past predictions in `data/predictions.csv` against real
    results now on file, updating win/loss and cumulative P&L.
-4. Re-trains and selects a model via walk-forward validation over the full
-   history (almost always: `UniformBaseline -- no candidate beat chance`).
+4. Re-trains all candidates and runs the honest walk-forward selection over
+   the full history (almost always: `UniformBaseline -- no candidate beat
+   chance`), then overrides the choice with `FORCED_MODEL_OVERRIDE` -- see
+   caveat above.
 5. Generates tonight's pick (seeded deterministically by the target draw id)
    and upserts the pending row in `data/predictions.csv`.
 6. Prints the dashboard to the console and writes `data/last_report.md` and

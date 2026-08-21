@@ -3,6 +3,7 @@
 Always shows the real running ~49% expected loss and the fixed honesty
 banner -- this tool never claims to predict draws or beat the odds.
 """
+import datetime as dt
 import json
 
 from src import config
@@ -21,6 +22,19 @@ LOGLOSS_SCOPE_NOTE = (
     "non-distinct draws fall outside the Any-6 outcome space and always result "
     "in a loss for this play type."
 )
+
+
+def _format_dubai(iso_utc: str | None) -> str:
+    """Render a UTC ISO timestamp as a human Dubai-local string, e.g.
+    '21 Aug 2026, 7:52 PM Dubai'. Everything user-facing is Dubai time --
+    UTC is an internal storage detail."""
+    if not iso_utc:
+        return "never"
+    moment = dt.datetime.fromisoformat(iso_utc)
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=dt.timezone.utc)
+    local = moment.astimezone(config.TIMEZONE)
+    return local.strftime("%-d %b %Y, %-I:%M %p") + " Dubai"
 
 
 def pnl_summary(predictions: list[dict]) -> dict:
@@ -63,11 +77,20 @@ def build_context(
     fairness_position: dict,
     fairness_pattern: dict,
     generated_at: str,
+    mode: str = "predict",
+    last_predict_at: str | None = None,
+    last_reconcile_at: str | None = None,
 ) -> dict:
     """Assemble all data the three renderers need into one plain dict."""
     last_draw = history[-1] if history else None
     return {
         "generated_at": generated_at,
+        "generated_at_dubai": _format_dubai(generated_at),
+        "mode": mode,
+        "last_predict_at": last_predict_at,
+        "last_predict_at_dubai": _format_dubai(last_predict_at),
+        "last_reconcile_at": last_reconcile_at,
+        "last_reconcile_at_dubai": _format_dubai(last_reconcile_at),
         "history_count": len(history),
         "first_draw_date": str(history[0]["draw_date"]) if history else None,
         "last_draw_date": str(last_draw["draw_date"]) if last_draw else None,
@@ -114,7 +137,9 @@ def _model_table_lines(model_table: dict) -> list[str]:
 def render_console(ctx: dict) -> str:
     lines = [
         "=== UAE Pick 3 Any-6 Tracker ===",
-        f"Generated: {ctx['generated_at']}",
+        f"Generated: {ctx['generated_at_dubai']} (mode: {ctx['mode']})",
+        f"Last predict run: {ctx['last_predict_at_dubai']}",
+        f"Last reconcile run: {ctx['last_reconcile_at_dubai']}",
         "",
         "-- History --",
         f"Draws on file: {ctx['history_count']} ({ctx['first_draw_date']} to {ctx['last_draw_date']})",
@@ -149,7 +174,9 @@ def render_console(ctx: dict) -> str:
 def render_markdown(ctx: dict) -> str:
     lines = [
         "# UAE Pick 3 Any-6 Tracker",
-        f"_Generated: {ctx['generated_at']}_",
+        f"_Generated: {ctx['generated_at_dubai']} (mode: {ctx['mode']})_",
+        f"_Last predict run: {ctx['last_predict_at_dubai']}_",
+        f"_Last reconcile run: {ctx['last_reconcile_at_dubai']}_",
         "",
         "## History",
         f"- Draws on file: {ctx['history_count']} ({ctx['first_draw_date']} to {ctx['last_draw_date']})",
@@ -309,7 +336,7 @@ body {{
   <div class="content">
     <div class="topbar">
       <span class="brand">Pick 3 · Any 6</span>
-      <span class="pill"><span class="pill-dot"></span>Updated {ctx['generated_at'][11:16]} UTC</span>
+      <span class="pill"><span class="pill-dot"></span>Updated {ctx['generated_at_dubai']}</span>
     </div>
 
     <div class="hero">
@@ -344,7 +371,10 @@ body {{
       <div>{ctx['honesty_banner']}</div>
     </div>
 
-    <div class="footer">Generated {ctx['generated_at']}</div>
+    <div class="footer">
+      Last predict run: {ctx['last_predict_at_dubai']}<br>
+      Last reconcile run: {ctx['last_reconcile_at_dubai']}
+    </div>
   </div>
 </div>
 </body></html>
@@ -354,6 +384,10 @@ body {{
 def render_json(ctx: dict) -> dict:
     return {
         "generated_at": ctx["generated_at"],
+        "generated_at_dubai": ctx["generated_at_dubai"],
+        "mode": ctx["mode"],
+        "last_predict_at_dubai": ctx["last_predict_at_dubai"],
+        "last_reconcile_at_dubai": ctx["last_reconcile_at_dubai"],
         "target_draw_id": ctx["target_draw_id"],
         "target_date": ctx["target_date"],
         "predicted_combo": ctx["predicted_combo"],

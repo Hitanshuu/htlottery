@@ -2,12 +2,16 @@ name: Pick 3 predict + reconcile
 
 on:
   schedule:
-    # 15:30 UTC = 19:30 Asia/Dubai -- predict: generate/upsert tonight's pick,
-    # ~2h before the 21:30 draw, so it's ready when you buy your ticket.
-    - cron: "30 15 * * *"
-    # 18:30 UTC = 22:30 Asia/Dubai -- reconcile: pull the landed 21:30 result
-    # and settle today's prediction / P&L. Never touches the pick.
-    - cron: "30 18 * * *"
+    # 14:45 UTC = 18:45 Asia/Dubai -- predict: generate/upsert tonight's pick.
+    # GitHub Actions scheduled cron is best-effort and has been observed
+    # drifting 15-45+ min late, so this fires 45 min ahead of the 19:30
+    # target to guarantee the pick lands well before the 20:30 ticket-buying
+    # window, ~50min before the 21:30 draw.
+    - cron: "45 14 * * *"
+    # 18:00 UTC = 22:00 Asia/Dubai -- reconcile: pull the landed 21:30 result
+    # and settle today's prediction / P&L. Never touches the pick. Fired 30
+    # min ahead of the 22:30 target for the same drift-buffer reason.
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -42,7 +46,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "30 15 * * *" ]; then
+          elif [ "${{ github.event.schedule }}" = "45 14 * * *" ]; then
             echo "mode=predict" >> "$GITHUB_OUTPUT"
           else
             echo "mode=reconcile" >> "$GITHUB_OUTPUT"

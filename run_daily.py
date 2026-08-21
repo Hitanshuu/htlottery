@@ -45,6 +45,19 @@ def _to_draws_csv_row(record: dict) -> dict:
     }
 
 
+def _load_run_state(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text())
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def _save_run_state(path: Path, state: dict) -> None:
+    path.write_text(json.dumps(state, indent=2))
+
+
 def _load_history(draws_path: Path) -> list[dict]:
     rows = storage.read_rows(draws_path, config.DRAWS_FIELDNAMES)
     rows.sort(key=lambda r: r["draw_id"])
@@ -81,6 +94,8 @@ def run(
 
     draws_path = data_dir / "draws.csv"
     predictions_path = data_dir / "predictions.csv"
+    run_state_path = data_dir / "run_state.json"
+    run_state = _load_run_state(run_state_path)
 
     _import_history_raw_if_present(data_dir, draws_path)
 
@@ -115,7 +130,15 @@ def run(
         storage.atomic_write_csv(predictions_path, config.PREDICTIONS_FIELDNAMES, reconciled)
 
     if history:
-        selected_name, model_table, reason = backtest.select_model(history)
+        honest_name, model_table, honest_reason = backtest.select_model(history)
+        selected_name = config.FORCED_MODEL_OVERRIDE
+        if selected_name == honest_name:
+            reason = honest_reason
+        else:
+            reason = (
+                f"Forced override: predicting with {selected_name} -- honest walk-forward "
+                f"selection would have picked {honest_name} ({honest_reason})"
+            )
     else:
         selected_name, model_table, reason = "UniformBaseline", {}, "no history yet -- defaulting to chance"
 
@@ -183,6 +206,10 @@ def run(
         else {"statistic": 0.0, "p_value": 1.0, "observed": {}}
     )
 
+    run_finished_at = dt.datetime.now(dt.timezone.utc).isoformat()
+    run_state[f"last_{mode}_at"] = run_finished_at
+    _save_run_state(run_state_path, run_state)
+
     context = dashboard.build_context(
         history=history,
         predictions=final_predictions,
@@ -192,7 +219,10 @@ def run(
         tonight_pick=tonight_pick,
         fairness_position=fairness_position,
         fairness_pattern=fairness_pattern,
-        generated_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+        generated_at=run_finished_at,
+        mode=mode,
+        last_predict_at=run_state.get("last_predict_at"),
+        last_reconcile_at=run_state.get("last_reconcile_at"),
     )
 
     print(dashboard.render_console(context))
