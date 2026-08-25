@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-24T18:34:25.732718+00:00",
-  "generated_at_dubai": "24 Aug 2026, 10:34 PM Dubai",
-  "mode": "reconcile",
-  "last_predict_at_dubai": "24 Aug 2026, 7:22 PM Dubai",
+  "generated_at": "2026-08-25T15:27:24.521716+00:00",
+  "generated_at_dubai": "25 Aug 2026, 7:27 PM Dubai",
+  "mode": "predict",
+  "last_predict_at_dubai": "25 Aug 2026, 7:27 PM Dubai",
   "last_reconcile_at_dubai": "24 Aug 2026, 10:34 PM Dubai",
-  "target_draw_id": "260824",
-  "target_date": "2026-08-24",
-  "predicted_combo": "8-5-7",
-  "predicted_digits_sorted": "5-7-8",
+  "target_draw_id": "260825",
+  "target_date": "2026-08-25",
+  "predicted_combo": "2-9-7",
+  "predicted_digits_sorted": "2-7-9",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
@@ -20,17 +20,17 @@
     "days_resolved": 60
   },
   "pnl": {
-    "days_played": 60,
-    "total_staked": 300,
+    "days_played": 61,
+    "total_staked": 305,
     "total_won": 425,
-    "net_pnl": 125,
-    "actual_rtp": 1.4166666666666667,
+    "net_pnl": 120,
+    "actual_rtp": 1.3934426229508197,
     "theoretical_rtp": 0.51,
     "resolved_days": 60,
     "actual_wins": 1,
     "expected_wins": 0.36
   },
   "selected_model_name": "PerPositionFrequency",
-  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)",
+  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
