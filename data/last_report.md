@@ -1,6 +1,6 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 12 Sep 2026, 12:23 AM Dubai (mode: reconcile)_
-_Last predict run: 11 Sep 2026, 9:54 PM Dubai_
+_Generated: 12 Sep 2026, 9:26 PM Dubai (mode: predict)_
+_Last predict run: 12 Sep 2026, 9:26 PM Dubai_
 _Last reconcile run: 12 Sep 2026, 12:23 AM Dubai_
 
 ## History
@@ -15,17 +15,17 @@ _Last reconcile run: 12 Sep 2026, 12:23 AM Dubai_
 - PerPositionFrequency: log-loss=4.8012, top1_hit_rate=2.4390%, n_scored=328
 - MarkovOrder1: log-loss=4.8585, top1_hit_rate=0.3049%, n_scored=328
 - MarkovOrder2: log-loss=4.8105, top1_hit_rate=1.8293%, n_scored=328
-- MLClassifier: log-loss=6.2496, top1_hit_rate=0.6098%, n_scored=328
-- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)
+- MLClassifier: log-loss=6.2505, top1_hit_rate=0.6098%, n_scored=328
+- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
 - Play type: **Any 6** | Target draw: **260912** (2026-09-12) | Stake: AED 5
-- Pick: **n/a -- run predict mode first**
+- Pick: **2-1-5**
 
 ## P&L Ledger
-- Days played: 76 | Staked: AED 380 | Won: AED 425
-- Net P&L: AED 45 | Actual RTP: 111.84% vs theoretical 51.00%
+- Days played: 77 | Staked: AED 385 | Won: AED 425
+- Net P&L: AED 40 | Actual RTP: 110.39% vs theoretical 51.00%
 - Expected wins: 0.456 | Actual wins: 1
 
 ## Fairness Audit (not a predictor)
