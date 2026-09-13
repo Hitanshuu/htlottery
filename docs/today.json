@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-09-12T20:06:12.469559+00:00",
-  "generated_at_dubai": "13 Sep 2026, 12:06 AM Dubai",
-  "mode": "reconcile",
-  "last_predict_at_dubai": "12 Sep 2026, 9:26 PM Dubai",
+  "generated_at": "2026-09-13T17:39:21.465814+00:00",
+  "generated_at_dubai": "13 Sep 2026, 9:39 PM Dubai",
+  "mode": "predict",
+  "last_predict_at_dubai": "13 Sep 2026, 9:39 PM Dubai",
   "last_reconcile_at_dubai": "13 Sep 2026, 12:06 AM Dubai",
   "target_draw_id": "260913",
   "target_date": "2026-09-13",
-  "predicted_combo": "n/a -- run predict mode first",
-  "predicted_digits_sorted": "n/a",
+  "predicted_combo": "9-8-6",
+  "predicted_digits_sorted": "6-8-9",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
-    "draw_id": "260912",
-    "combo": "9-4-4",
-    "pattern": "AAB"
+    "draw_id": "260913",
+    "combo": "9-3-0",
+    "pattern": "ABC"
   },
   "win_record": {
     "wins": 1,
-    "days_resolved": 77
+    "days_resolved": 78
   },
   "pnl": {
-    "days_played": 77,
-    "total_staked": 385,
+    "days_played": 78,
+    "total_staked": 390,
     "total_won": 425,
-    "net_pnl": 40,
-    "actual_rtp": 1.103896103896104,
+    "net_pnl": 35,
+    "actual_rtp": 1.0897435897435896,
     "theoretical_rtp": 0.51,
-    "resolved_days": 77,
+    "resolved_days": 78,
     "actual_wins": 1,
-    "expected_wins": 0.462
+    "expected_wins": 0.468
   },
   "selected_model_name": "PerPositionFrequency",
-  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)",
+  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
