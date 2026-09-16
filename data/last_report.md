@@ -1,7 +1,7 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 16 Sep 2026, 10:26 PM Dubai (mode: predict)_
+_Generated: 17 Sep 2026, 12:47 AM Dubai (mode: reconcile)_
 _Last predict run: 16 Sep 2026, 10:26 PM Dubai_
-_Last reconcile run: 16 Sep 2026, 12:49 AM Dubai_
+_Last reconcile run: 17 Sep 2026, 12:47 AM Dubai_
 
 ## History
 - Draws on file: 470 (2025-06-04 to 2026-09-16)
@@ -15,13 +15,13 @@ _Last reconcile run: 16 Sep 2026, 12:49 AM Dubai_
 - PerPositionFrequency: log-loss=4.8020, top1_hit_rate=2.4096%, n_scored=332
 - MarkovOrder1: log-loss=4.8615, top1_hit_rate=0.3012%, n_scored=332
 - MarkovOrder2: log-loss=4.8161, top1_hit_rate=1.8072%, n_scored=332
-- MLClassifier: log-loss=6.2373, top1_hit_rate=0.6024%, n_scored=332
-- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)
+- MLClassifier: log-loss=6.2382, top1_hit_rate=0.6024%, n_scored=332
+- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **260916** (2026-09-16) | Stake: AED 5
-- Pick: **8-3-5**
+- Play type: **Any 6** | Target draw: **260917** (2026-09-17) | Stake: AED 5
+- Pick: **n/a -- run predict mode first**
 
 ## P&L Ledger
 - Days played: 81 | Staked: AED 405 | Won: AED 425
