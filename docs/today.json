@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-20T17:40:24.056506+00:00",
-  "generated_at_dubai": "20 Sep 2026, 9:40 PM Dubai",
-  "mode": "predict",
+  "generated_at": "2026-09-20T20:14:02.685790+00:00",
+  "generated_at_dubai": "21 Sep 2026, 12:14 AM Dubai",
+  "mode": "reconcile",
   "last_predict_at_dubai": "20 Sep 2026, 9:40 PM Dubai",
-  "last_reconcile_at_dubai": "19 Sep 2026, 11:58 PM Dubai",
-  "target_draw_id": "260920",
-  "target_date": "2026-09-20",
-  "predicted_combo": "0-6-2",
-  "predicted_digits_sorted": "0-2-6",
+  "last_reconcile_at_dubai": "21 Sep 2026, 12:14 AM Dubai",
+  "target_draw_id": "260921",
+  "target_date": "2026-09-21",
+  "predicted_combo": "n/a -- run predict mode first",
+  "predicted_digits_sorted": "n/a",
   "play_type": "Any 6",
   "stake": 5,
   "last_result": {
@@ -31,6 +31,6 @@
     "expected_wins": 0.51
   },
   "selected_model_name": "PerPositionFrequency",
-  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)",
+  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
