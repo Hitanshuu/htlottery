@@ -1,7 +1,7 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 6 Oct 2026, 11:49 PM Dubai (mode: predict)_
+_Generated: 7 Oct 2026, 2:14 AM Dubai (mode: reconcile)_
 _Last predict run: 6 Oct 2026, 11:49 PM Dubai_
-_Last reconcile run: 6 Oct 2026, 3:39 AM Dubai_
+_Last reconcile run: 7 Oct 2026, 2:14 AM Dubai_
 
 ## History
 - Draws on file: 490 (2025-06-04 to 2026-10-06)
@@ -16,12 +16,12 @@ _Last reconcile run: 6 Oct 2026, 3:39 AM Dubai_
 - MarkovOrder1: log-loss=4.8575, top1_hit_rate=0.5764%, n_scored=347
 - MarkovOrder2: log-loss=4.8138, top1_hit_rate=1.7291%, n_scored=347
 - MLClassifier: log-loss=6.1992, top1_hit_rate=0.5764%, n_scored=347
-- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)
+- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **261006** (2026-10-06) | Stake: AED 5
-- Pick: **5-0-6**
+- Play type: **Any 6** | Target draw: **261007** (2026-10-07) | Stake: AED 5
+- Pick: **n/a -- run predict mode first**
 
 ## P&L Ledger
 - Days played: 99 | Staked: AED 495 | Won: AED 425
