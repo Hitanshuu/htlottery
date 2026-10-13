@@ -1,7 +1,7 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 13 Oct 2026, 2:15 AM Dubai (mode: predict)_
+_Generated: 13 Oct 2026, 4:05 AM Dubai (mode: reconcile)_
 _Last predict run: 13 Oct 2026, 2:15 AM Dubai_
-_Last reconcile run: 12 Oct 2026, 1:25 AM Dubai_
+_Last reconcile run: 13 Oct 2026, 4:05 AM Dubai_
 
 ## History
 - Draws on file: 496 (2025-06-04 to 2026-10-12)
@@ -16,7 +16,7 @@ _Last reconcile run: 12 Oct 2026, 1:25 AM Dubai_
 - MarkovOrder1: log-loss=4.8579, top1_hit_rate=0.5714%, n_scored=350
 - MarkovOrder2: log-loss=4.8136, top1_hit_rate=1.7143%, n_scored=350
 - MLClassifier: log-loss=6.1945, top1_hit_rate=0.5714%, n_scored=350
-- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)
+- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
