@@ -1,7 +1,7 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 14 Oct 2026, 2:15 AM Dubai (mode: reconcile)_
+_Generated: 15 Oct 2026, 1:15 AM Dubai (mode: reconcile)_
 _Last predict run: 14 Oct 2026, 12:22 AM Dubai_
-_Last reconcile run: 14 Oct 2026, 2:15 AM Dubai_
+_Last reconcile run: 15 Oct 2026, 1:15 AM Dubai_
 
 ## History
 - Draws on file: 497 (2025-06-04 to 2026-10-13)
@@ -20,8 +20,8 @@ _Last reconcile run: 14 Oct 2026, 2:15 AM Dubai_
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
-- Play type: **Any 6** | Target draw: **261014** (2026-10-14) | Stake: AED 5
-- Pick: **1-5-2**
+- Play type: **Any 6** | Target draw: **261015** (2026-10-15) | Stake: AED 5
+- Pick: **n/a -- run predict mode first**
 
 ## P&L Ledger
 - Days played: 105 | Staked: AED 525 | Won: AED 425
