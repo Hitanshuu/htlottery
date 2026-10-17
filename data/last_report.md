@@ -1,37 +1,37 @@
 # UAE Pick 3 Any-6 Tracker
-_Generated: 17 Oct 2026, 12:27 AM Dubai (mode: reconcile)_
-_Last predict run: 16 Oct 2026, 10:21 PM Dubai_
+_Generated: 17 Oct 2026, 9:32 PM Dubai (mode: predict)_
+_Last predict run: 17 Oct 2026, 9:32 PM Dubai_
 _Last reconcile run: 17 Oct 2026, 12:27 AM Dubai_
 
 ## History
-- Draws on file: 500 (2025-06-04 to 2026-10-16)
-- Last result: 261016: 2-3-0 (ABC)
+- Draws on file: 501 (2025-06-04 to 2026-10-17)
+- Last result: 261017: 9-8-0 (ABC)
 
 ## Reconciliation
-- Record: 1 wins / 107 days resolved
+- Record: 1 wins / 108 days resolved
 
 ## Model Selection
-- UniformBaseline: log-loss=4.7875, top1_hit_rate=1.6949%, n_scored=354
-- PerPositionFrequency: log-loss=4.8041, top1_hit_rate=2.2599%, n_scored=354
-- MarkovOrder1: log-loss=4.8571, top1_hit_rate=0.5650%, n_scored=354
-- MarkovOrder2: log-loss=4.8144, top1_hit_rate=1.6949%, n_scored=354
-- MLClassifier: log-loss=6.1839, top1_hit_rate=0.5650%, n_scored=354
-- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)
+- UniformBaseline: log-loss=4.7875, top1_hit_rate=1.6901%, n_scored=355
+- PerPositionFrequency: log-loss=4.8039, top1_hit_rate=2.2535%, n_scored=355
+- MarkovOrder1: log-loss=4.8553, top1_hit_rate=0.5634%, n_scored=355
+- MarkovOrder2: log-loss=4.8135, top1_hit_rate=1.6901%, n_scored=355
+- MLClassifier: log-loss=6.1803, top1_hit_rate=0.5634%, n_scored=355
+- **Selected:** PerPositionFrequency -- Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)
 - Log-loss computed over distinct-digit (ABC) draws only (~72% of days) -- non-distinct draws fall outside the Any-6 outcome space and always result in a loss for this play type.
 
 ## Tonight's Pick
 - Play type: **Any 6** | Target draw: **261017** (2026-10-17) | Stake: AED 5
-- Pick: **n/a -- run predict mode first**
+- Pick: **4-7-1**
 
 ## P&L Ledger
-- Days played: 107 | Staked: AED 535 | Won: AED 425
-- Net P&L: AED -110 | Actual RTP: 79.44% vs theoretical 51.00%
-- Expected wins: 0.642 | Actual wins: 1
+- Days played: 108 | Staked: AED 540 | Won: AED 425
+- Net P&L: AED -115 | Actual RTP: 78.70% vs theoretical 51.00%
+- Expected wins: 0.648 | Actual wins: 1
 
 ## Fairness Audit (not a predictor)
-- d1: p=0.4905
-- d2: p=0.5102
-- d3: p=0.5955
-- pattern split: p=0.1903
+- d1: p=0.5061
+- d2: p=0.5061
+- d3: p=0.5542
+- pattern split: p=0.1908
 
 > Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return ≈ 51% (≈49% expected loss). For entertainment; play at most AED 5/day.
