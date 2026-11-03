@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-03T20:38:46.372761+00:00",
-  "generated_at_dubai": "4 Nov 2026, 12:38 AM Dubai",
-  "mode": "predict",
+  "generated_at": "2026-11-03T22:50:30.474299+00:00",
+  "generated_at_dubai": "4 Nov 2026, 2:50 AM Dubai",
+  "mode": "reconcile",
   "last_predict_at_dubai": "4 Nov 2026, 12:38 AM Dubai",
-  "last_reconcile_at_dubai": "3 Nov 2026, 4:25 AM Dubai",
+  "last_reconcile_at_dubai": "4 Nov 2026, 2:50 AM Dubai",
   "target_draw_id": "261104",
   "target_date": "2026-11-04",
   "predicted_combo": "2-6-5",
@@ -31,6 +31,6 @@
     "expected_wins": 0.726
   },
   "selected_model_name": "PerPositionFrequency",
-  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (results updated this run)",
+  "selection_reason": "Forced override: predicting with PerPositionFrequency -- honest walk-forward selection would have picked UniformBaseline (no candidate beat chance by more than 1 standard error -- defaulting to UniformBaseline) (reconcile run -- results updated this run, no new pick generated)",
   "honesty_banner": "Pick 3 is i.i.d. uniform. This pick does not beat the odds. Expected return \u2248 51% (\u224849% expected loss). For entertainment; play at most AED 5/day."
 }
